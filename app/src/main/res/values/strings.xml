@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">PokeQuiz</string>
+
+    <!--ButtonTitle-->
+    <string name="pokemonLeague">Liga pokémon</string>
+    <string name="training">Entrenamiento</string>
+    <string name="hallOfFame">Hall de la fama</string>
+
+    <!--ContentDescription-->
+    <string name="cd_background">background</string>
+    <string name="cd_title">title</string>
+    <string name="cd_pokeball">pokeball</string>
+    <string name="cd_pokemon">pokemon</string>
+    <string name="cd_generation">generation</string>
+
+    <!--Dialogs-->
+    <string name="title_generation">Selecciona una generación</string>
 </resources>
