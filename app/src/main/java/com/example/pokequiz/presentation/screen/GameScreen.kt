@@ -19,24 +19,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.pokequiz.core.TypeGame
 import com.example.pokequiz.core.extensions.formatNamePokemon
 import com.example.pokequiz.domain.model.PokemonModel
 import com.example.pokequiz.domain.state.PokemonState
 import com.example.pokequiz.presentation.composable.Background
-import com.example.pokequiz.presentation.composable.CustomText
+import com.example.pokequiz.presentation.composable.CustomSingleText
 import com.example.pokequiz.presentation.composable.DialogTotalScore
 import com.example.pokequiz.presentation.composable.LoadingOptionMenu
 import com.example.pokequiz.presentation.composable.ProgressTimeBar
 import com.example.pokequiz.presentation.composable.TogglePokemonImage
 import com.example.pokequiz.presentation.ui.theme.GreenCorrectAnswer
 import com.example.pokequiz.presentation.ui.theme.RedIncorrectAnswer
-import com.example.pokequiz.presentation.viewmodel.HomeViewModel
+import com.example.pokequiz.presentation.viewmodel.GameViewModel
 
 @Composable
 fun GameScreen(
     typeGame: String,
     idGeneration: Int,
-    viewModel: HomeViewModel = hiltViewModel()
+    navigateToScore: () -> Unit,
+    viewModel: GameViewModel = hiltViewModel()
 ) {
     val pokemonState by viewModel.pokemonListState.collectAsState()
 
@@ -54,7 +56,12 @@ fun GameScreen(
                     (pokemonState as PokemonState.Success).pokemon,
                     idGeneration
                 )
-            StartGame(listPokemonSelected, typeGame, idGeneration, viewModel)
+            StartGame(
+                listPokemonSelected = listPokemonSelected,
+                typeGame = typeGame,
+                idGeneration = idGeneration,
+                viewModel = viewModel,
+                navigateToScore = { navigateToScore() })
         }
     }
 }
@@ -77,7 +84,8 @@ fun StartGame(
     listPokemonSelected: List<PokemonModel>,
     typeGame: String,
     idGeneration: Int,
-    viewModel: HomeViewModel
+    viewModel: GameViewModel,
+    navigateToScore: () -> Unit
 ) {
     val isRunningGame by viewModel.isRunningGame.collectAsState()
     val selectedAnswer by viewModel.selectedAnswer.collectAsState()
@@ -91,11 +99,17 @@ fun StartGame(
         listPokemonGame.indexOf(pokemonSelected.name.formatNamePokemon())
 
     if (showTotalPoints) {
+        val roundedTotalPoints = (totalPoints * 10).toInt()
         DialogTotalScore(
             typeGame = typeGame,
             idGeneration = idGeneration,
-            totalPoints = totalPoints,
-            onConfirm = {},
+            totalPoints = roundedTotalPoints,
+            onConfirm = {
+                if (TypeGame.League.typeGame == typeGame) {
+                    viewModel.saveTotalGamePoints(roundedTotalPoints)
+                }
+                navigateToScore()
+            },
             onDismiss = {})
     } else {
         Column(
@@ -109,7 +123,7 @@ fun StartGame(
                 onTimeUp = {
                     viewModel.stopGameTimer(
                         running = false,
-                        selectedAnswer = 0,
+                        selectedAnswer = -1,
                         correctAnswer = false
                     )
                 })
@@ -175,7 +189,7 @@ fun StartGame(
 @Composable
 fun OptionButtons(
     modifier: Modifier,
-    viewModel: HomeViewModel,
+    viewModel: GameViewModel,
     positionCorrectAnswer: Int,
     listPokemonGame: MutableList<String>,
     idPosition: Int,
@@ -206,6 +220,6 @@ fun OptionButtons(
         border = BorderStroke(width = 2.dp, color = Color.Black),
         modifier = modifier
     ) {
-        CustomText(Modifier, listPokemonGame[idPosition], Color.White, 10.sp)
+        CustomSingleText(Modifier, listPokemonGame[idPosition], Color.White, 10.sp)
     }
 }

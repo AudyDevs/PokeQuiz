@@ -11,10 +11,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 import com.example.pokequiz.R
 
 @Composable
-fun CustomText(modifier: Modifier, bodyText: String, color: Color, size: TextUnit) {
+fun CustomSingleText(modifier: Modifier, bodyText: String, color: Color, size: TextUnit) {
     val customFont = FontFamily(Font(R.font.pokemon_gb, FontWeight.Normal))
     Text(
         text = bodyText,
@@ -25,6 +26,7 @@ fun CustomText(modifier: Modifier, bodyText: String, color: Color, size: TextUni
         fontSize = size,
         textAlign = TextAlign.Center,
         fontFamily = customFont,
+        lineHeight = 18.sp,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )

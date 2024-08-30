@@ -17,11 +17,11 @@ import androidx.compose.ui.unit.dp
 import com.example.pokequiz.core.Constants.MAX_TIME_GAME
 import com.example.pokequiz.presentation.ui.theme.Blue
 import com.example.pokequiz.presentation.ui.theme.Yellow
-import com.example.pokequiz.presentation.viewmodel.HomeViewModel
+import com.example.pokequiz.presentation.viewmodel.GameViewModel
 import kotlinx.coroutines.delay
 
 @Composable
-fun ProgressTimeBar(viewModel: HomeViewModel, onTimeUp: () -> Unit) {
+fun ProgressTimeBar(viewModel: GameViewModel, onTimeUp: () -> Unit) {
     val progress by viewModel.progress.collectAsState()
     val waitingTime by viewModel.waitingTime.collectAsState()
     val isRunningGame by viewModel.isRunningGame.collectAsState()

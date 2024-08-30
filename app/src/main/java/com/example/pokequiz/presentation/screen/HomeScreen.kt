@@ -16,9 +16,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.pokequiz.R
 import com.example.pokequiz.core.TypeGame
@@ -26,7 +28,9 @@ import com.example.pokequiz.domain.state.PokemonState
 import com.example.pokequiz.presentation.composable.Background
 import com.example.pokequiz.presentation.composable.BouncingImage
 import com.example.pokequiz.presentation.composable.CustomMenuButton
+import com.example.pokequiz.presentation.composable.CustomSingleText
 import com.example.pokequiz.presentation.composable.DialogGeneration
+import com.example.pokequiz.presentation.composable.DialogNameTrainer
 import com.example.pokequiz.presentation.composable.LoadingOptionMenu
 import com.example.pokequiz.presentation.viewmodel.HomeViewModel
 
@@ -36,7 +40,9 @@ fun HomeScreen(
     navigateToScore: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
+    viewModel.readNameTrainer()
     viewModel.savePokemonList()
+    val nameTrainer by viewModel.nameTrainer.collectAsState()
     val pokemonState by viewModel.pokemonListState.collectAsState()
     var showDialogGeneration by remember { mutableStateOf(false) }
 
@@ -44,10 +50,26 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 60.dp),
+            .padding(top = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
+        CustomSingleText(
+            modifier = Modifier
+                .padding(horizontal = 18.dp),
+            bodyText = stringResource(id = R.string.welcome),
+            color = Color.Black,
+            size = 16.sp
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        CustomSingleText(
+            modifier = Modifier
+                .padding(horizontal = 18.dp),
+            bodyText = stringResource(id = R.string.trainer, nameTrainer),
+            color = Color.Black,
+            size = 16.sp
+        )
+        Spacer(modifier = Modifier.height(26.dp))
         BouncingImage(
             painter = painterResource(id = R.drawable.ic_poke_quiz)
         )
@@ -61,7 +83,6 @@ fun HomeScreen(
             navigateToGame(TypeGame.Training.typeGame, idGeneration)
         })
     } else {
-
         Column(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -76,23 +97,31 @@ fun HomeScreen(
                 }
 
                 is PokemonState.Success -> {
-                    Spacer(modifier = Modifier.weight(0.75f))
-                    OptionMenu(
-                        selectedToGame = { typeGame ->
-                            when (typeGame) {
-                                TypeGame.League -> {
-                                    navigateToGame(typeGame.typeGame, 0)
-                                }
+                    if (nameTrainer.isEmpty()) {
+                        DialogNameTrainer(
+                            onDismiss = {},
+                            onConfirm = { name ->
+                                viewModel.saveNameTrainer(name)
+                            })
+                    } else {
+                        Spacer(modifier = Modifier.weight(0.75f))
+                        OptionMenu(
+                            selectedToGame = { typeGame ->
+                                when (typeGame) {
+                                    TypeGame.League -> {
+                                        navigateToGame(typeGame.typeGame, 0)
+                                    }
 
-                                TypeGame.Training -> {
-                                    showDialogGeneration = true
+                                    TypeGame.Training -> {
+                                        showDialogGeneration = true
+                                    }
                                 }
+                            },
+                            selectedToScore = {
+                                navigateToScore()
                             }
-                        },
-                        selectedToScore = {
-                            navigateToScore()
-                        }
-                    )
+                        )
+                    }
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
@@ -113,6 +142,8 @@ fun OptionMenu(
             ) {
                 selectedToGame(TypeGame.League)
             },
+        48.dp,
+        48.dp,
         painterResource(id = R.drawable.ic_pokeball),
         stringResource(id = R.string.pokemonLeague)
     )
@@ -125,6 +156,8 @@ fun OptionMenu(
             ) {
                 selectedToGame(TypeGame.Training)
             },
+        48.dp,
+        48.dp,
         painterResource(id = R.drawable.ic_superball),
         stringResource(id = R.string.training)
     )
@@ -137,6 +170,8 @@ fun OptionMenu(
             ) {
                 selectedToScore()
             },
+        48.dp,
+        48.dp,
         painterResource(id = R.drawable.ic_masterball),
         stringResource(id = R.string.hallOfFame)
     )

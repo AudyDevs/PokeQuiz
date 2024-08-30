@@ -1,9 +1,9 @@
 package com.example.pokequiz.di
 
+import com.example.pokequiz.core.Constants.BASE_URL
 import com.example.pokequiz.data.PokemonRepositoryImpl
 import com.example.pokequiz.data.network.PokemonApiService
 import com.example.pokequiz.data.room.dao.PokemonDao
-import com.example.pokequiz.core.Constants.BASE_URL
 import com.example.pokequiz.domain.PokemonRepository
 import dagger.Module
 import dagger.Provides

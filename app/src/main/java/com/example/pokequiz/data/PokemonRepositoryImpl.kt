@@ -1,13 +1,13 @@
 package com.example.pokequiz.data
 
-import com.example.pokequiz.core.mappers.toDomain
-import com.example.pokequiz.core.mappers.toRoom
-import com.example.pokequiz.data.network.PokemonApiService
-import com.example.pokequiz.data.room.dao.PokemonDao
 import com.example.pokequiz.core.Constants.BIG_IMAGE
 import com.example.pokequiz.core.Constants.LIMIT_POKEMON_LIST
 import com.example.pokequiz.core.Constants.POKEMON_LIMIT
 import com.example.pokequiz.core.Constants.POKEMON_OFFSET
+import com.example.pokequiz.core.mappers.toDomain
+import com.example.pokequiz.core.mappers.toRoom
+import com.example.pokequiz.data.network.PokemonApiService
+import com.example.pokequiz.data.room.dao.PokemonDao
 import com.example.pokequiz.domain.PokemonRepository
 import com.example.pokequiz.domain.model.PokemonModel
 import com.example.pokequiz.domain.state.PokemonState

@@ -2,8 +2,8 @@ package com.example.pokequiz.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.pokequiz.data.room.DataBase
 import com.example.pokequiz.core.Constants.ROOM_DATABASE_NAME
+import com.example.pokequiz.data.room.DataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

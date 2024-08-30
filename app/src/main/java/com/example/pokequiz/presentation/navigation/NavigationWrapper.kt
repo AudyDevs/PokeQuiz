@@ -34,10 +34,24 @@ fun NavigationWrapper(navHostController: NavHostController) {
         ) { navBackStackEntry ->
             val typeGame = navBackStackEntry.arguments?.getString("typeGame") ?: ""
             val idGeneration = navBackStackEntry.arguments?.getInt("idGeneration") ?: 0
-            GameScreen(typeGame = typeGame, idGeneration = idGeneration)
+            GameScreen(
+                typeGame = typeGame,
+                idGeneration = idGeneration,
+                navigateToScore = {
+                    navHostController.navigate(NavScreen.Score.route) {
+                        popUpTo(navHostController.graph.startDestinationId) {
+                            inclusive = false
+                        }
+                    }
+                }
+            )
         }
         composable(NavScreen.Score.route) {
-            ScoreScreen()
+            ScoreScreen(
+                navigateToHome = {
+                    navHostController.navigate(NavScreen.Home.route)
+                }
+            )
         }
     }
 }

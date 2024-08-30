@@ -14,7 +14,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pokequiz.R
@@ -31,7 +30,13 @@ fun CustomGenerationButton(
             .padding(horizontal = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CustomText(modifier, generations.nameRegion, Color.White, 8.sp)
+        val region = stringResource(id = generations.nameRegion)
+        CustomSingleText(
+            modifier,
+            stringResource(id = R.string.name_region, region),
+            Color.White,
+            8.sp
+        )
         Spacer(modifier = Modifier.height(16.dp))
         Image(
             painter = painterResource(id = generations.image),

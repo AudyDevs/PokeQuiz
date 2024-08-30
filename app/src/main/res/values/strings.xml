@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">PokeQuiz</string>
+    <string name="welcome">Bienvenido,</string>
+    <string name="trainer">entrenador %1$s</string>
 
     <!--ButtonTitle-->
     <string name="pokemonLeague">Liga pokémon</string>
     <string name="training">Entrenamiento</string>
     <string name="hallOfFame">Hall de la fama</string>
+    <string name="accept">Acceptar</string>
 
     <!--ContentDescription-->
     <string name="cd_background">background</string>
@@ -13,6 +16,26 @@
     <string name="cd_pokemon">pokemon</string>
     <string name="cd_generation">generation</string>
 
+    <!--generation-->
+    <string name="name_region">Región de %1$s</string>
+    <string name="region1">Kanto</string>
+    <string name="generation2">Johto</string>
+    <string name="generation3">Hoenn</string>
+    <string name="generation4">Sinnoh</string>
+    <string name="generation5">Teselia</string>
+    <string name="generation6">Kalos</string>
+    <string name="generation7">Alola</string>
+    <string name="generation8">Galar</string>
+    <string name="generation9">Paldea</string>
+
     <!--Dialogs-->
-    <string name="title_generation">Selecciona una generación</string>
+    <string name="nameTrainer_editText">Nombre de entrenador</string>
+    <string name="generation_title">Selecciona una generación</string>
+    <string name="score_league_title">Has completado la liga Pokémon con éxito.</string>
+    <string name="score_training_title">Has completado con éxito la región de %1$s.</string>
+    <string name="score_points">%1$s puntos</string>
+    <string name="score_league_body">Tus méritos se guardarán para la prosperidad en el Hall de la fama.</string>
+    <string name="score_training_body_low_points">Deberías entrenar más antes de enfrentarte al alto mando.</string>
+    <string name="score_training_body_big_points">Ya estás preparado para enfrentarte al alto mando.</string>
+    <string name="home_name_trainer_body">¿Eres un chico o una chica? ¿Cómo te llamas?</string>
 </resources>
