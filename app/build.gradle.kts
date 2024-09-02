@@ -97,6 +97,11 @@ dependencies {
 
     //Testing
     testImplementation(libs.junit)
+    testImplementation(libs.kotlintest.runner.junit5)
+    testImplementation(libs.mockk)
+    testImplementation(libs.jetbrains.kotlinx.coroutines.test)
+    testImplementation(libs.core.testing)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
