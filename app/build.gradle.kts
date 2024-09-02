@@ -2,8 +2,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.daggerHiltAndroid)
+    alias(libs.plugins.googleServices)
+    alias(libs.plugins.crashlytics)
     id("kotlin-kapt")
-    id("com.google.gms.google-services")
 }
 
 android {
@@ -81,6 +82,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.crashlytics)
     implementation(libs.play.services.auth)
     implementation(libs.firebase.firestore.ktx)
 

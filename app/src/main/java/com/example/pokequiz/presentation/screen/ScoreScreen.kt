@@ -37,7 +37,6 @@ import com.example.pokequiz.presentation.viewmodel.ScoreViewModel
 
 @Composable
 fun ScoreScreen(
-    navigateToHome: () -> Unit,
     viewModel: ScoreViewModel = hiltViewModel()
 ) {
     val pointsState by viewModel.pointsState.collectAsState()

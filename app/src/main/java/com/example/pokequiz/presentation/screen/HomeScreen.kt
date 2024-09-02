@@ -29,8 +29,8 @@ import com.example.pokequiz.presentation.composable.Background
 import com.example.pokequiz.presentation.composable.BouncingImage
 import com.example.pokequiz.presentation.composable.CustomMenuButton
 import com.example.pokequiz.presentation.composable.CustomSingleText
-import com.example.pokequiz.presentation.composable.DialogGeneration
-import com.example.pokequiz.presentation.composable.DialogNameTrainer
+import com.example.pokequiz.presentation.dialog.DialogGeneration
+import com.example.pokequiz.presentation.dialog.DialogNameTrainer
 import com.example.pokequiz.presentation.composable.LoadingOptionMenu
 import com.example.pokequiz.presentation.viewmodel.HomeViewModel
 

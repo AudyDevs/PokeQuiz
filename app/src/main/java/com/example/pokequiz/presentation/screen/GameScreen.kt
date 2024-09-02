@@ -26,7 +26,7 @@ import com.example.pokequiz.domain.model.ScoreModel
 import com.example.pokequiz.domain.state.PokemonState
 import com.example.pokequiz.presentation.composable.Background
 import com.example.pokequiz.presentation.composable.CustomSingleText
-import com.example.pokequiz.presentation.composable.DialogTotalScore
+import com.example.pokequiz.presentation.dialog.DialogTotalScore
 import com.example.pokequiz.presentation.composable.LoadingOptionMenu
 import com.example.pokequiz.presentation.composable.ProgressTimeBar
 import com.example.pokequiz.presentation.composable.TogglePokemonImage
@@ -102,16 +102,15 @@ fun StartGame(
         listPokemonGame.indexOf(pokemonSelected.name.formatNamePokemon())
 
     if (showTotalPoints) {
-        val roundedTotalPoints = (totalPoints * 10).toInt()
         DialogTotalScore(
             typeGame = typeGame,
             idGeneration = idGeneration,
-            totalPoints = roundedTotalPoints,
+            totalPoints = totalPoints,
             onConfirm = {
                 if (TypeGame.League.typeGame == typeGame) {
                     val scoreModel = ScoreModel(
                         nameTrainer = nameTrainer,
-                        totalPoints = roundedTotalPoints
+                        totalPoints = totalPoints
                     )
                     viewModel.saveScorePoints(scoreModel)
                 }

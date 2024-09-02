@@ -46,10 +46,10 @@ class GameViewModel @Inject constructor(
     private val _positionGame = MutableStateFlow(0)
     val positionGame: StateFlow<Int> = _positionGame
 
-    private val _pointsStep = MutableStateFlow(0f)
+    private val _pointsStep = MutableStateFlow(0)
 
-    private val _totalPoints = MutableStateFlow(0f)
-    val totalPoints: StateFlow<Float> = _totalPoints
+    private val _totalPoints = MutableStateFlow(0)
+    val totalPoints: StateFlow<Int> = _totalPoints
 
     private val _showTotalPoints = MutableStateFlow(false)
     val showTotalPoints: StateFlow<Boolean> = _showTotalPoints
@@ -96,9 +96,7 @@ class GameViewModel @Inject constructor(
         _isRunningGame.value = running
         _selectedAnswer.value = selectedAnswer
         if (correctAnswer) {
-            saveTotalPoints(
-                String.format("%.2f", _pointsStep.value).toFloat()
-            )
+            saveTotalPoints(_pointsStep.value)
         }
         nextStepPokemon()
     }
@@ -112,10 +110,10 @@ class GameViewModel @Inject constructor(
     }
 
     fun savePointsStep(points: Float) {
-        _pointsStep.value = points
+        _pointsStep.value = (points * 10).toInt()
     }
 
-    private fun saveTotalPoints(points: Float) {
+    private fun saveTotalPoints(points: Int) {
         _totalPoints.value += points
     }
 
@@ -126,7 +124,7 @@ class GameViewModel @Inject constructor(
                 _showTotalPoints.value = false
                 //Reset values
                 _isRunningGame.value = true
-                _pointsStep.value = 0f
+                _pointsStep.value = 0
                 _progress.value = 0f
                 _waitingTime.value = 0f
 

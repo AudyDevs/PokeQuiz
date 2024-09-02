@@ -3,10 +3,8 @@ package com.example.pokequiz.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokequiz.core.DispatcherProvider
-import com.example.pokequiz.domain.model.ScoreModel
 import com.example.pokequiz.domain.state.ScoreState
 import com.example.pokequiz.domain.usecase.GetScorePointsUseCase
-import com.example.pokequiz.domain.usecase.SaveScorePointsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

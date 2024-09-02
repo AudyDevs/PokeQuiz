@@ -52,11 +52,7 @@ fun NavigationWrapper(navHostController: NavHostController) {
             )
         }
         composable(NavScreen.Score.route) {
-            ScoreScreen(
-                navigateToHome = {
-                    navHostController.navigate(NavScreen.Home.route)
-                }
-            )
+            ScoreScreen()
         }
     }
 }

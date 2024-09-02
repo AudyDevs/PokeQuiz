@@ -5,7 +5,7 @@ coreTesting = "1.1.1"
 datastorePreferences = "1.1.1"
 firebaseAnalytics = "22.0.1"
 firebaseAuth = "23.0.0"
-firebaseBom = "32.8.0"
+firebaseBom = "33.2.0"
 firebaseFirestoreKtx = "25.0.0"
 hiltAndroid = "2.46"
 hiltNavigationCompose = "1.2.0"
@@ -26,6 +26,8 @@ mockk = "1.12.3"
 retrofit = "2.9.0"
 roomKtx = "2.6.1"
 runtimeLivedata = "1.6.8"
+services = "4.4.2"
+crashlytics = "3.0.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,6 +42,7 @@ core-testing = { module = "android.arch.core:core-testing", version.ref = "coreT
 firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalytics" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroid" }
@@ -69,4 +72,5 @@ play-services-auth = { module = "com.google.android.gms:play-services-auth", ver
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 daggerHiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
-
+googleServices = { id = "com.google.gms.google-services", version.ref = "services" }
+crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }

@@ -3,6 +3,7 @@ package com.example.pokequiz.presentation.composable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,6 +40,11 @@ fun CustomTextField(onValueChange: (String) -> Unit) {
                 size = 11.sp
             )
         },
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color.LightGray,
+            unfocusedContainerColor = Color.LightGray,
+            disabledContainerColor = Color.LightGray,
+        ),
         textStyle = TextStyle(
             color = Color.Black,
             fontSize = 12.sp,
