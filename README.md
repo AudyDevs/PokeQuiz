@@ -25,9 +25,13 @@
 - Código con Clean Code y Clean Architecture
 
 ## 📱 Capturas
-| Main | Menu 1 | Menu 2 |
+| Home Screen | Game Screen | Score Screen |
 |--|--|--|
-| <img src="" width="245" height="500"> | <img src="" width="245" height="500"> | <img src="" width="245" height="500">
+| <img src="/previews/HomeScreen.webp" width="245" height="500"> | <img src="/previews/GameScreen.webp" width="245" height="500"> | <img src="/previews/ScoreScreen.webp" width="245" height="500">
+
+| Dialog Name | Dialog Generation | Dialog Score |
+|--|--|--|
+| <img src="/previews/DialogNameTrainer.webp" width="245" height="500"> | <img src="/previews/DialogGeneration.webp" width="245" height="500"> | <img src="/previews/DialogScore.webp" width="245" height="500">
 
 ## 👇 Descargar 👇
 Ir a [Releases](https://github.com/AudyDevs/PokeQuiz/releases) para descargar el último APK.
