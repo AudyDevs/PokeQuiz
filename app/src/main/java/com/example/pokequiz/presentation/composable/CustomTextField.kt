@@ -33,7 +33,7 @@ fun CustomTextField(onValueChange: (String) -> Unit) {
         },
         placeholder = {
             CustomSingleText(
-                modifier = Modifier,
+                modifier = Modifier.fillMaxWidth(),
                 bodyText = stringResource(id = R.string.nameTrainer_editText),
                 color = Color.Black,
                 size = 11.sp
@@ -41,7 +41,7 @@ fun CustomTextField(onValueChange: (String) -> Unit) {
         },
         textStyle = TextStyle(
             color = Color.Black,
-            fontSize = 11.sp,
+            fontSize = 12.sp,
             textAlign = TextAlign.Center,
             fontFamily = customFont,
             fontWeight = FontWeight.Bold

@@ -38,4 +38,8 @@
     <string name="score_training_body_low_points">Deberías entrenar más antes de enfrentarte al alto mando.</string>
     <string name="score_training_body_big_points">Ya estás preparado para enfrentarte al alto mando.</string>
     <string name="home_name_trainer_body">¿Eres un chico o una chica? ¿Cómo te llamas?</string>
+
+    <!--Errors-->
+    <string name="errorGetPoints">Se ha producido un error al cargar los puntos totales, volved a intentarlo más tarde</string>
+    <string name="errorSavePoints">Se ha producido un error al guardar los puntos totales, volved a intentarlo más tarde</string>
 </resources>

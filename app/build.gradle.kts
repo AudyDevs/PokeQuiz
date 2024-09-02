@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.daggerHiltAndroid)
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -75,6 +76,13 @@ dependencies {
 
     //Datastore preferences
     implementation(libs.androidx.datastore.preferences)
+
+    //FireBase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
+    implementation(libs.firebase.firestore.ktx)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

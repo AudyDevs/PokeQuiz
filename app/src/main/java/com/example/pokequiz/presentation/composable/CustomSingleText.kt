@@ -20,8 +20,7 @@ fun CustomSingleText(modifier: Modifier, bodyText: String, color: Color, size: T
     Text(
         text = bodyText,
         color = color,
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier,
         fontWeight = FontWeight.Bold,
         fontSize = size,
         textAlign = TextAlign.Center,

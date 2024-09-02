@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.pokequiz.R
-import com.example.pokequiz.core.TypeGame
+import com.example.pokequiz.core.type.TypeGame
 import com.example.pokequiz.domain.state.PokemonState
 import com.example.pokequiz.presentation.composable.Background
 import com.example.pokequiz.presentation.composable.BouncingImage
@@ -36,7 +36,7 @@ import com.example.pokequiz.presentation.viewmodel.HomeViewModel
 
 @Composable
 fun HomeScreen(
-    navigateToGame: (typeGame: String, idGeneration: Int) -> Unit,
+    navigateToGame: (typeGame: String, idGeneration: Int, nameTrainer: String) -> Unit,
     navigateToScore: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
@@ -56,6 +56,7 @@ fun HomeScreen(
     ) {
         CustomSingleText(
             modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 18.dp),
             bodyText = stringResource(id = R.string.welcome),
             color = Color.Black,
@@ -64,6 +65,7 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(8.dp))
         CustomSingleText(
             modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 18.dp),
             bodyText = stringResource(id = R.string.trainer, nameTrainer),
             color = Color.Black,
@@ -71,7 +73,8 @@ fun HomeScreen(
         )
         Spacer(modifier = Modifier.height(26.dp))
         BouncingImage(
-            painter = painterResource(id = R.drawable.ic_poke_quiz)
+            painter = painterResource(id = R.drawable.ic_poke_quiz),
+            scaleImage = 100
         )
     }
 
@@ -80,12 +83,11 @@ fun HomeScreen(
             showDialogGeneration = false
         }, onConfirm = { idGeneration ->
             showDialogGeneration = false
-            navigateToGame(TypeGame.Training.typeGame, idGeneration)
+            navigateToGame(TypeGame.Training.typeGame, idGeneration, nameTrainer)
         })
     } else {
         Column(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Bottom
         ) {
@@ -109,7 +111,7 @@ fun HomeScreen(
                             selectedToGame = { typeGame ->
                                 when (typeGame) {
                                     TypeGame.League -> {
-                                        navigateToGame(typeGame.typeGame, 0)
+                                        navigateToGame(typeGame.typeGame, 0, nameTrainer)
                                     }
 
                                     TypeGame.Training -> {
@@ -124,7 +126,7 @@ fun HomeScreen(
                     }
                 }
             }
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.weight(0.85f))
         }
     }
 }

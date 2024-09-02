@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pokequiz.R
-import com.example.pokequiz.core.Generations
+import com.example.pokequiz.core.type.Generations
 
 @Composable
 fun CustomGenerationButton(
@@ -32,7 +32,7 @@ fun CustomGenerationButton(
     ) {
         val region = stringResource(id = generations.nameRegion)
         CustomSingleText(
-            modifier,
+            modifier.fillMaxWidth(),
             stringResource(id = R.string.name_region, region),
             Color.White,
             8.sp

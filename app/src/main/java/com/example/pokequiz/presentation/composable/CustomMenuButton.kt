@@ -45,7 +45,7 @@ fun CustomMenuButton(
                 .align(Alignment.CenterStart)
                 .size(18.dp)
         )
-        CustomSingleText(modifier, titleButton, Blue, 12.sp)
+        CustomSingleText(modifier.fillMaxWidth(), titleButton, Blue, 12.sp)
         Image(
             painter = painter,
             contentDescription = stringResource(id = R.string.cd_pokeball),

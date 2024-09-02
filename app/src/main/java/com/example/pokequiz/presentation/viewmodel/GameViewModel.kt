@@ -5,11 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.pokequiz.core.Constants.MAX_POKEMON_GAME
 import com.example.pokequiz.core.Constants.MAX_WAITING_TIME
 import com.example.pokequiz.core.DispatcherProvider
-import com.example.pokequiz.core.Generations
 import com.example.pokequiz.core.extensions.formatNamePokemon
+import com.example.pokequiz.core.type.Generations
 import com.example.pokequiz.domain.model.PokemonModel
+import com.example.pokequiz.domain.model.ScoreModel
 import com.example.pokequiz.domain.state.PokemonState
+import com.example.pokequiz.domain.state.ScoreState
 import com.example.pokequiz.domain.usecase.GetPokemonListUseCase
+import com.example.pokequiz.domain.usecase.SaveScorePointsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +24,8 @@ import javax.inject.Inject
 @HiltViewModel
 class GameViewModel @Inject constructor(
     private val dispatcherProvider: DispatcherProvider,
-    private val getPokemonListUseCase: GetPokemonListUseCase
+    private val getPokemonListUseCase: GetPokemonListUseCase,
+    private val saveScorePointsUseCase: SaveScorePointsUseCase
 ) : ViewModel() {
 
     private val _pokemonListState = MutableStateFlow<PokemonState>(PokemonState.Loading)
@@ -49,6 +53,8 @@ class GameViewModel @Inject constructor(
 
     private val _showTotalPoints = MutableStateFlow(false)
     val showTotalPoints: StateFlow<Boolean> = _showTotalPoints
+
+    private val _pointsState = MutableStateFlow<ScoreState>(ScoreState.Loading)
 
     fun getPokemonList() {
         viewModelScope.launch {
@@ -132,7 +138,15 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    fun saveTotalGamePoints(totalPoints: Int) {
-
+    fun saveScorePoints(scoreModel: ScoreModel) {
+        viewModelScope.launch {
+            withContext(dispatcherProvider.io) {
+                saveScorePointsUseCase.invoke(scoreModel).addOnSuccessListener { pointsState ->
+                    _pointsState.value = pointsState
+                }.addOnFailureListener { exception ->
+                    _pointsState.value = ScoreState.Error(exception.message ?: "")
+                }
+            }
+        }
     }
 }

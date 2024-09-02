@@ -19,9 +19,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.pokequiz.core.TypeGame
 import com.example.pokequiz.core.extensions.formatNamePokemon
+import com.example.pokequiz.core.type.TypeGame
 import com.example.pokequiz.domain.model.PokemonModel
+import com.example.pokequiz.domain.model.ScoreModel
 import com.example.pokequiz.domain.state.PokemonState
 import com.example.pokequiz.presentation.composable.Background
 import com.example.pokequiz.presentation.composable.CustomSingleText
@@ -37,6 +38,7 @@ import com.example.pokequiz.presentation.viewmodel.GameViewModel
 fun GameScreen(
     typeGame: String,
     idGeneration: Int,
+    nameTrainer: String,
     navigateToScore: () -> Unit,
     viewModel: GameViewModel = hiltViewModel()
 ) {
@@ -60,6 +62,7 @@ fun GameScreen(
                 listPokemonSelected = listPokemonSelected,
                 typeGame = typeGame,
                 idGeneration = idGeneration,
+                nameTrainer = nameTrainer,
                 viewModel = viewModel,
                 navigateToScore = { navigateToScore() })
         }
@@ -69,8 +72,7 @@ fun GameScreen(
 @Composable
 fun LoadingGame() {
     Column(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(modifier = Modifier.weight(1f))
@@ -84,6 +86,7 @@ fun StartGame(
     listPokemonSelected: List<PokemonModel>,
     typeGame: String,
     idGeneration: Int,
+    nameTrainer: String,
     viewModel: GameViewModel,
     navigateToScore: () -> Unit
 ) {
@@ -106,15 +109,18 @@ fun StartGame(
             totalPoints = roundedTotalPoints,
             onConfirm = {
                 if (TypeGame.League.typeGame == typeGame) {
-                    viewModel.saveTotalGamePoints(roundedTotalPoints)
+                    val scoreModel = ScoreModel(
+                        nameTrainer = nameTrainer,
+                        totalPoints = roundedTotalPoints
+                    )
+                    viewModel.saveScorePoints(scoreModel)
                 }
                 navigateToScore()
             },
             onDismiss = {})
     } else {
         Column(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(24.dp))
@@ -220,6 +226,6 @@ fun OptionButtons(
         border = BorderStroke(width = 2.dp, color = Color.Black),
         modifier = modifier
     ) {
-        CustomSingleText(Modifier, listPokemonGame[idPosition], Color.White, 10.sp)
+        CustomSingleText(Modifier.fillMaxWidth(), listPokemonGame[idPosition], Color.White, 10.sp)
     }
 }

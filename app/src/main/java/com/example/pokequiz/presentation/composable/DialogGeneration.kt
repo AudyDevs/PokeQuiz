@@ -2,6 +2,7 @@ package com.example.pokequiz.presentation.composable
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -17,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.pokequiz.R
-import com.example.pokequiz.core.Generations
+import com.example.pokequiz.core.type.Generations
 
 @Composable
 fun DialogGeneration(
@@ -36,7 +37,7 @@ fun DialogGeneration(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 CustomSingleText(
-                    modifier = Modifier,
+                    modifier = Modifier.fillMaxWidth(),
                     bodyText = stringResource(id = R.string.generation_title),
                     color = Color.White,
                     size = 10.sp

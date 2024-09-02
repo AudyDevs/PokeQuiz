@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.pokequiz.R
 
 @Composable
-fun BouncingImage(painter: Painter) {
+fun BouncingImage(painter: Painter, scaleImage: Int) {
     val infiniteTransition = rememberInfiniteTransition(label = "")
     val scale by infiniteTransition.animateFloat(
         initialValue = 1.6f,
@@ -34,7 +34,7 @@ fun BouncingImage(painter: Painter) {
         painter = painter,
         contentDescription = stringResource(id = R.string.cd_title),
         modifier = Modifier
-            .size((100 * scale).dp)
+            .size((scaleImage * scale).dp)
             .graphicsLayer {
                 scaleX = scale
                 scaleY = scale

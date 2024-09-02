@@ -3,6 +3,7 @@ package com.example.pokequiz.presentation.composable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,8 +20,8 @@ import androidx.compose.ui.window.Dialog
 import com.example.pokequiz.R
 import com.example.pokequiz.core.Constants.MAX_POKEMON_GAME
 import com.example.pokequiz.core.Constants.MAX_TIME_GAME
-import com.example.pokequiz.core.Generations
-import com.example.pokequiz.core.TypeGame
+import com.example.pokequiz.core.type.Generations
+import com.example.pokequiz.core.type.TypeGame
 import com.example.pokequiz.presentation.ui.theme.Blue
 
 @Composable
@@ -31,15 +32,15 @@ fun DialogTotalScore(
     onDismiss: () -> Unit,
     onConfirm: () -> Unit
 ) {
-    val nameRegion =
-        stringResource(id = Generations.entries.find { it.id == idGeneration }?.nameRegion!!)
-    val averagePoints = (MAX_TIME_GAME * MAX_POKEMON_GAME) * 10 / 2
     var title = ""
     var body = ""
     if (TypeGame.League.typeGame == typeGame) {
         title = stringResource(id = R.string.score_league_title)
         body = stringResource(id = R.string.score_league_body)
     } else if (TypeGame.Training.typeGame == typeGame) {
+        val nameRegion =
+            stringResource(id = Generations.entries.find { it.id == idGeneration }?.nameRegion!!)
+        val averagePoints = (MAX_TIME_GAME * MAX_POKEMON_GAME) * 10 / 2
         title = stringResource(id = R.string.score_training_title, nameRegion)
         body = if (totalPoints > averagePoints) {
             stringResource(id = R.string.score_training_body_big_points)
@@ -64,7 +65,7 @@ fun DialogTotalScore(
                 )
                 Spacer(modifier = Modifier.height(26.dp))
                 CustomSingleText(
-                    modifier = Modifier,
+                    modifier = Modifier.fillMaxWidth(),
                     bodyText = stringResource(id = R.string.score_points, totalPoints),
                     color = Blue,
                     size = 18.sp

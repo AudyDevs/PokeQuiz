@@ -1,4 +1,4 @@
-package com.example.pokequiz.core
+package com.example.pokequiz.core.type
 
 import com.example.pokequiz.R
 
