@@ -12,6 +12,8 @@ object PokeQuizMotherObject {
     val anyPokemonModel = PokemonModel(1, "nameTest", "imageTest")
     val anyPokemonEntity = PokemonEntity(1, "nameTest", "imageTest")
 
+    val anyListPokemonEntity = listOf(anyPokemonEntity, anyPokemonEntity)
+
     const val anyNameTrainer = "NameTrainerTest"
     val anyPokemonStateLoading = PokemonState.Loading
 

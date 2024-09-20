@@ -14,7 +14,8 @@ import com.example.pokequiz.domain.state.PokemonState
 import javax.inject.Inject
 
 class PokemonRepositoryImpl @Inject constructor(
-    private val pokemonApiService: PokemonApiService, private val pokemonDao: PokemonDao
+    private val pokemonApiService: PokemonApiService,
+    private val pokemonDao: PokemonDao
 ) : PokemonRepository {
 
     override suspend fun savePokemonList(): PokemonState {
